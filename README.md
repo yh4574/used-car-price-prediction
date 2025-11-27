@@ -12,34 +12,60 @@ Objectives
 - Provide insights that can guide pricing strategies for sellers or filtering options for buyers
 
 ---
-## Dataset
-The dataset consists of used car listings collected from a public source.  
-It includes key variables such as:
+## Dataset: ●Used Car Listings (Dallas)
 
-- `year`
-- `mileage`
+- `location`
 - `condition`
+- `listed_date`
+- `listed_time`
+- `drive`
 - `fuel`
-- `manufacturer`
-- `model`
 - `odometer`
+- `paint color`
+- `size`
+- `title status`
+- `transmission`
+- `year`
+- `models`
+- `cylinders`
+- `brand`
 - `price` (target variable)
-
-No personal or sensitive information is included.
 
 ---
 
-## 🔍 Project Workflow
+## Project Workflow
 
-### 1. Data Cleaning
-- Handle missing values  
-- Remove unrealistic values (e.g., negative mileage or extreme outliers)  
-- Convert categorical variables into usable formats  
+### 1. Data Preprocessing
+- Dropped rows with missing values in core columns required for modeling, including:
+'price', 'odometer', 'year', 'condition', 'drive', 'fuel', 'transmission', 'paint color'
+- Removed unhelpful or sparse columns like 'size', 'cylinders', and 'type'
+- Excluded rows missing geographic coordinates (lat and long) to ensure completeness
+- Filtered out outliers:
+  1. Kept only cars with odometer < 1,000,000 miles
+  2. Kept only cars newer than year 1990
+  3. Removed the top 1% most expensive listings to reduce the effect of price outliers on prediction accuracy
+- Checked for remaining missing values and printed the final dataset shape
 
 ### 2. Exploratory Data Analysis (EDA)
-- Distribution of car prices  
-- Correlation between year/mileage and price  
-- Price differences across brands and fuel types  
+
+### 1. Price Distribution
+To understand the overall pricing landscape of the Dallas used car market, I plotted the distribution of vehicle prices using a histogram (`seaborn.histplot`).
+
+**Key observations:**
+- Most vehicles are priced between **$5,000 and $20,000**, indicating a concentration of lower- to mid-priced listings.
+- The distribution is **right-skewed**, with a long tail extending up to ~$75,000.
+- The long tail suggests the presence of a small number of **high-end or luxury vehicles**, which may require transformation or outlier handling during modeling.
+
+*Plot:*  
+![Used Car Price Distribution](https://github.com/user-attachments/assets/de70bd1a-5b0e-4b4b-ae76-42c13cdfa05f)
+
+
+---
+
+### 2. Price Distribution by Major Brand
+To analyze how prices vary by manufacturer, I extracted brand information from the `year_make_model` column and focused on the 10 most common brands (e.g., Toyota, Honda, Ford, BMW, Mercedes).
+
+A boxplot was used to compare the price distributions across brands.
 
 ### 3. Feature Engineering
 - Age of the car  
