@@ -1,11 +1,17 @@
-# used car price prediction
 # Used Car Price Prediction
 
-This project aims to build a machine learning model to predict the price of used cars based on publicly available listing data.  
-It explores how factors such as mileage, model year, condition, fuel type, and brand influence market value.
+Introduction
+
+The used car market plays a significant role in the automotive industry and is influenced by factors, including brand, mileage, year, fuel type, etc. With the increasing availability of used car listings online, this project aims to apply data science techniques to predict the price of a used car based on their features, enabling better decision-making for buyers, sellers, and platforms.This project focuses specifically on the Dallas market, leveraging a dataset of used car listings from the region. 
 
 ---
+Objectives
+- Explore the factors that most significantly impact used car pricing in the Dallas region
+- Build regression models to predict car prices
+- Evaluate the model's performance and interpret key drivers of price variation
+- Provide insights that can guide pricing strategies for sellers or filtering options for buyers
 
+---
 ## Dataset
 The dataset consists of used car listings collected from a public source.  
 It includes key variables such as:
